@@ -6,7 +6,7 @@ API Store GroSkill Workshop
 <div class="container">
   <h1>Welcome to the GroSkill Workshop</h1>
   <p>We are going to use this page to do the workshop</p>
-  {% if data.sms %}
+  {% if data and data.sms %}
   <div class="alert alert-success" role="alert">
     We notified our cube that you hit an address with Fiber
   </div>
