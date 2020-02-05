@@ -37,6 +37,8 @@ def check_address():
     if status == 200 and fiber_available(speed_response):
         sms_response, status = send_sms()
         general_response['sms'] = sms_response
+        if status != 200:
+            general_response['error'] = sms_response
     else:
         general_response['error'] = speed_response
     return render_template('index.html', data=general_response)
@@ -91,7 +93,7 @@ def send_sms():
     Sends SMS using KPN SMS API
     """
     # TODO Implement this method
-    pass
+    return {}, 200
 
 
 def fiber_available(response):
