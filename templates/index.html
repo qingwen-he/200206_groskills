@@ -12,7 +12,8 @@ API Store GroSkill Workshop
   <div class="alert alert-success" role="alert">
     We notified our cube that you hit an address with Fiber
   </div>
-  {% elif data.error %}
+  {% endif %}
+  {% if data.error %}
   <div class="alert alert-danger" role="alert">
     Error reason: {{data.error.error.name}}
   </div>
