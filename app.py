@@ -34,11 +34,12 @@ def check_address():
         client_id=request.form['clientid'], client_secret=request.form['clientsecret']))
     speed_response, status = call_speed_test_api()
     general_response['internet'] = speed_response
-    if status == 200 and fiber_available(speed_response):
-        sms_response, status = send_sms()
-        general_response['sms'] = sms_response
-        if status != 200:
-            general_response['error'] = sms_response
+    if status == 200:
+        if fiber_available(speed_response):
+            sms_response, sms_status = send_sms()
+            general_response['sms'] = sms_response
+            if sms_status != 200:
+                general_response['error'] = sms_response
     else:
         general_response['error'] = speed_response
     return render_template('index.html', data=general_response)
